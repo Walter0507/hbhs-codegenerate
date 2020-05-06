@@ -1,0 +1,33 @@
+package ${packageName}.repository.es;
+
+import ${packageName}.domain.es.${entityClassName}EsEntity;
+import ${packageName}.repository.BaseEsTest;
+import org.junit.Assert;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+
+public class ${entityClassName}RepositoryTest extends BaseEsTest {
+
+    @Autowired
+    private ElasticsearchRestTemplate restTemplate;
+    @Autowired
+    private ${entityClassName}EsRepository repository;
+
+
+    @Test
+    public void testIndex(){
+        restTemplate.deleteIndex(${entityClassName}EsEntity.class);
+        restTemplate.createIndex(${entityClassName}EsEntity.class);
+        restTemplate.putMapping(${entityClassName}EsEntity.class);
+        restTemplate.refresh(${entityClassName}EsEntity.class);
+    }
+
+    @Test
+    public void addUser() throws Exception{
+        ${entityClassName}EsEntity entity = new ${entityClassName}EsEntity();
+        // TODO
+        repository.save(entity);
+        Thread.sleep(10000L);
+    }
+}

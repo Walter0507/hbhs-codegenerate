@@ -1,0 +1,17 @@
+package ${packageName}.domain.request.param;
+
+import com.hbhs.common.domain.model.request.param.BaseParam;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter@Setter@ToString(callSuper = true)@Builder
+public class ${entityClassName}CreateParam extends BaseParam {
+${prefixField}
+
+    @Override
+    public void checkParam() {
+        // TODO
+    }
+}

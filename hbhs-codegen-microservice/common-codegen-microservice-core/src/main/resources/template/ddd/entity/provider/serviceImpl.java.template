@@ -1,0 +1,68 @@
+package ${packageName}.service.impl;
+
+import ${packageName}.convertor.${entityName}.${entityClassName}CommonDataConvertor;
+import ${packageName}.convertor.${entityName}.${entityClassName}QueryParam2CriteriaConvertor;
+import ${packageName}.repository.dao.I${entityClassName}Dao;
+import ${packageName}.domain.criteria.${entityClassName}Criteria;
+import ${packageName}.domain.entity.${entityClassName}Entity;
+import ${packageName}.domain.request.param.${entityClassName}CreateParam;
+import ${packageName}.domain.request.param.${entityClassName}QueryParam;
+import ${packageName}.domain.request.param.${entityClassName}UpdateParam;
+import ${packageName}.domain.response.info.${entityClassName}Info;
+import ${packageName}.service.I${entityClassName}Service;
+import com.hbhs.common.domain.model.paging.Pagination;
+import com.hbhs.common.domain.model.response.TPageResult;
+import com.hbhs.common.domain.model.response.TResultBuilder;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@Slf4j
+public class ${entityClassName}ServiceImpl implements I${entityClassName}Service {
+    @Autowired
+    private I${entityClassName}Dao ${entityName}Dao;
+    @Autowired
+    private ${entityClassName}CommonDataConvertor commonDataConvertor;
+    @Autowired
+    private ${entityClassName}QueryParam2CriteriaConvertor criteriaConvertor;
+
+    @Override
+    public ${entityClassName}Info create${entityClassName}(${entityClassName}CreateParam param) {
+        ${entityClassName}Entity entity = commonDataConvertor.createParam2Entity(param);
+        entity.setId(System.currentTimeMillis()+"");
+        Boolean result = ${entityName}Dao.create${entityClassName}(entity);
+        return result!=null&&result?commonDataConvertor.entity2Info(entity):null;
+    }
+
+    @Override
+    public Boolean update${entityClassName}(${entityClassName}UpdateParam param) {
+        ${entityClassName}Entity entity = commonDataConvertor.updateParam2Entity(param);
+        return ${entityName}Dao.update${entityClassName}(entity);
+    }
+
+    @Override
+    public Boolean delete${entityClassName}(String id) {
+        return ${entityName}Dao.deleted${entityClassName}(id);
+    }
+
+    @Override
+    public ${entityClassName}Info find${entityClassName}ById(String id) {
+        ${entityClassName}Entity entity = ${entityName}Dao.find${entityClassName}ById(id);
+        return commonDataConvertor.entity2Info(entity);
+    }
+
+    @Override
+    public TPageResult<${entityClassName}Info> query${entityClassName}(${entityClassName}QueryParam param, Pagination pagination) {
+        ${entityClassName}Criteria criteria = criteriaConvertor.convert(param);
+
+        List<${entityClassName}Entity> entityList = ${entityName}Dao.find${entityClassName}ByCriteria(criteria, pagination);
+
+        List<${entityClassName}Info> infoList = commonDataConvertor.entityList2Info(entityList);
+        TPageResult<${entityClassName}Info> result = TResultBuilder.succPageResult(${entityClassName}Info.class, pagination);
+        result.setData(infoList);
+        return result;
+    }
+}

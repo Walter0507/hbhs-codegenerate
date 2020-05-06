@@ -1,0 +1,19 @@
+package ${packageName}.convertor.${entityNamePackage};
+
+import ${packageName}.domain.criteria.${entityClassName}Criteria;
+import ${packageName}.domain.request.param.${entityClassName}QueryParam;
+import com.hbhs.common.domain.convertor.BaseDataConverter;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+public class ${entityClassName}QueryParam2CriteriaConvertor extends BaseDataConverter<${entityClassName}QueryParam, ${entityClassName}Criteria> {
+    @Override
+    public ${entityClassName}Criteria convert(${entityClassName}QueryParam param) {
+        ${entityClassName}Criteria criteria = new ${entityClassName}Criteria();
+        BeanUtils.copyProperties(param, criteria);
+        return criteria;
+    }
+}

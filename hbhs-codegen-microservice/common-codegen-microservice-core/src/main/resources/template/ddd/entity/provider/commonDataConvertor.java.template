@@ -1,0 +1,46 @@
+package ${packageName}.convertor.${entityNamePackage};
+
+import ${packageName}.domain.entity.${entityClassName}Entity;
+import ${packageName}.domain.request.param.${entityClassName}CreateParam;
+import ${packageName}.domain.request.param.${entityClassName}UpdateParam;
+import ${packageName}.domain.response.info.${entityClassName}Info;
+import com.hbhs.common.domain.convertor.BaseCommonDataConvertor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+public class ${entityClassName}CommonDataConvertor extends BaseCommonDataConvertor<${entityClassName}CreateParam , ${entityClassName}UpdateParam, ${entityClassName}Info, ${entityClassName}Entity> {
+
+    @Override
+    public ${entityClassName}Entity createParam2Entity(${entityClassName}CreateParam param){
+        if (param == null){
+            return null;
+        }
+        ${entityClassName}Entity entity = new ${entityClassName}Entity();
+        BeanUtils.copyProperties(param, entity);
+
+        return entity;
+    }
+
+    @Override
+    public ${entityClassName}Entity updateParam2Entity(${entityClassName}UpdateParam param) {
+        if (param == null){
+            return null;
+        }
+        ${entityClassName}Entity entity = new ${entityClassName}Entity();
+        BeanUtils.copyProperties(param, entity);
+        return entity;
+    }
+
+    @Override
+    public ${entityClassName}Info entity2Info(${entityClassName}Entity entity) {
+        if (entity == null){
+            return null;
+        }
+        ${entityClassName}Info info = new ${entityClassName}Info();
+        BeanUtils.copyProperties(entity, info);
+        return info;
+    }
+}

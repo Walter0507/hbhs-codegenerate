@@ -1,0 +1,44 @@
+package ${packageName}.domain.enums;
+
+import com.hbhs.common.domain.model.BaseEnum;
+
+public enum ${enumsClass} implements BaseEnum {
+    // TODO
+    ;
+
+    private int code;
+    private String name;
+
+    ${enumsClass}(int code, String name){
+        this.code = code;
+        this.name = name;
+    }
+
+    public static ${enumsClass} findByName(String name){
+        for (${enumsClass} value : values()) {
+            if (value.name.equalsIgnoreCase(name)){
+                return value;
+            }
+        }
+        return null;
+    }
+
+    public static ${enumsClass} findByCode(int code){
+        for (${enumsClass} value : values()) {
+            if (value.code == code){
+                return value;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public int getCode() {
+        return 0;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+}

@@ -1,0 +1,8 @@
+package ${packageName}.repository.es;
+
+import ${packageName}.domain.es.${entityClassName}EsEntity;
+import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+
+public interface ${entityClassName}EsRepository extends ElasticsearchRepository<${entityClassName}EsEntity, String> {
+
+}

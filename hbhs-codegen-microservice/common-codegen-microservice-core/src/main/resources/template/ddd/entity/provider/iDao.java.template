@@ -1,0 +1,22 @@
+package ${packageName}.repository.dao;
+
+import ${packageName}.domain.criteria.${entityClassName}Criteria;
+import ${packageName}.domain.entity.${entityClassName}Entity;
+import com.hbhs.common.domain.model.paging.Pagination;
+
+import java.util.List;
+
+public interface I${entityClassName}Dao {
+
+    Boolean create${entityClassName}(${entityClassName}Entity entity);
+
+    Boolean batchCreate${entityClassName}(List<${entityClassName}Entity> entityList);
+
+    Boolean update${entityClassName}(${entityClassName}Entity entity);
+
+    Boolean deleted${entityClassName}(String id);
+
+    ${entityClassName}Entity find${entityClassName}ById(String id);
+
+    List<${entityClassName}Entity> find${entityClassName}ByCriteria(${entityClassName}Criteria criteria, Pagination pagination);
+}

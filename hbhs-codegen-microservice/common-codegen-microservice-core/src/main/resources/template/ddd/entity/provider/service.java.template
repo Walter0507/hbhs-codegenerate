@@ -1,0 +1,21 @@
+package ${packageName}.service;
+
+import ${packageName}.domain.request.param.${entityClassName}CreateParam;
+import ${packageName}.domain.request.param.${entityClassName}QueryParam;
+import ${packageName}.domain.request.param.${entityClassName}UpdateParam;
+import ${packageName}.domain.response.info.${entityClassName}Info;
+import com.hbhs.common.domain.model.paging.Pagination;
+import com.hbhs.common.domain.model.response.TPageResult;
+
+public interface I${entityClassName}Service {
+
+    ${entityClassName}Info create${entityClassName}(${entityClassName}CreateParam param);
+
+    Boolean update${entityClassName}(${entityClassName}UpdateParam param);
+
+    Boolean delete${entityClassName}(String id);
+
+    ${entityClassName}Info find${entityClassName}ById(String id);
+
+    TPageResult<${entityClassName}Info> query${entityClassName}(${entityClassName}QueryParam param, Pagination pagination);
+}

@@ -1,0 +1,43 @@
+package ${packageName}.api.fallback;
+
+import ${packageName}.api.client.${entityClassName}Client;
+import ${packageName}.domain.request.param.${entityClassName}CreateParam;
+import ${packageName}.domain.request.param.${entityClassName}QueryParam;
+import ${packageName}.domain.request.param.${entityClassName}UpdateParam;
+import ${packageName}.domain.response.info.${entityClassName}Info;
+import com.hbhs.common.domain.consts.ErrorCodeConsts;
+import com.hbhs.common.domain.model.request.GenericRequest;
+import com.hbhs.common.domain.model.request.IdRequest;
+import com.hbhs.common.domain.model.request.QueryRequest;
+import com.hbhs.common.domain.model.response.TPageResult;
+import com.hbhs.common.domain.model.response.TResultBuilder;
+import com.hbhs.common.domain.model.response.TSingleResult;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ${entityClassName}ClientFallback implements ${entityClassName}Client {
+    @Override
+    public TSingleResult<${entityClassName}Info> create(GenericRequest<${entityClassName}CreateParam> request) {
+        return TResultBuilder.failTSingle(ErrorCodeConsts.RPC_CODE,ErrorCodeConsts.RPC_MESSAGE);
+    }
+
+    @Override
+    public TSingleResult<Boolean> udpate(GenericRequest<${entityClassName}UpdateParam> request) {
+        return TResultBuilder.failTSingle(ErrorCodeConsts.RPC_CODE,ErrorCodeConsts.RPC_MESSAGE);
+    }
+
+    @Override
+    public TSingleResult<${entityClassName}Info> findById(IdRequest request) {
+        return TResultBuilder.failTSingle(ErrorCodeConsts.RPC_CODE,ErrorCodeConsts.RPC_MESSAGE);
+    }
+
+    @Override
+    public TSingleResult<Boolean> deleteById(IdRequest request) {
+        return TResultBuilder.failTSingle(ErrorCodeConsts.RPC_CODE,ErrorCodeConsts.RPC_MESSAGE);
+    }
+
+    @Override
+    public TPageResult<${entityClassName}Info> query${entityClassName}(QueryRequest<${entityClassName}QueryParam> request) {
+        return TResultBuilder.failTPage(ErrorCodeConsts.RPC_CODE,ErrorCodeConsts.RPC_MESSAGE);
+    }
+}

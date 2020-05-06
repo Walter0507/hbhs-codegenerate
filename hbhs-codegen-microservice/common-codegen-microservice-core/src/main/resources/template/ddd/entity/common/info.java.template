@@ -1,0 +1,13 @@
+package ${packageName}.domain.response.info;
+
+import com.hbhs.common.domain.model.response.info.BaseInfo;
+import lombok.*;
+
+@Getter
+@Setter
+@ToString(callSuper = true)
+@Builder
+@NoArgsConstructor@AllArgsConstructor
+public class ${entityClassName}Info extends BaseInfo {
+${prefixField}
+}

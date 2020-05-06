@@ -1,0 +1,51 @@
+package ${packageName}.repository.dao.impl;
+
+import ${packageName}.repository.dao.I${entityClassName}Dao;
+import ${packageName}.repository.dao.mapper.${entityClassName}Mapper;
+import ${packageName}.domain.criteria.${entityClassName}Criteria;
+import ${packageName}.domain.entity.${entityClassName}Entity;
+import com.hbhs.common.datasource.route.ReadOnlyConnection;
+import com.hbhs.common.domain.model.paging.Pagination;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository@Slf4j
+public class ${entityClassName}DaoImpl implements I${entityClassName}Dao {
+
+    @Autowired
+    private ${entityClassName}Mapper ${entityName}Mapper;
+
+    @Override
+    public Boolean create${entityClassName}(${entityClassName}Entity entity) {
+        return ${entityName}Mapper.insert${entityClassName}(entity);
+    }
+
+    @Override
+    public Boolean batchCreate${entityClassName}(List<${entityClassName}Entity> entityList) {
+        return ${entityName}Mapper.batchInsert${entityClassName}(entityList);
+    }
+
+    @Override
+    public Boolean update${entityClassName}(${entityClassName}Entity entity) {
+        return ${entityName}Mapper.update${entityClassName}(entity);
+    }
+
+    @Override
+    public Boolean deleted${entityClassName}(String id) {
+        return ${entityName}Mapper.delete${entityClassName}(id);
+    }
+
+    @Override
+    @ReadOnlyConnection
+    public ${entityClassName}Entity find${entityClassName}ById(String id) {
+        return ${entityName}Mapper.find${entityClassName}ById(id);
+    }
+
+    @Override
+    public List<${entityClassName}Entity> find${entityClassName}ByCriteria(${entityClassName}Criteria criteria, Pagination pagination) {
+        return ${entityName}Mapper.find${entityClassName}ByCriteria(criteria);
+    }
+}

@@ -1,0 +1,24 @@
+package ${packageName}.api.proxy;
+
+import ${packageName}.api.client.${entityClassName}Client;
+import ${packageName}.api.endpoint.${entityClassName}Endpoint;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+@Service
+@Slf4j
+public class ${entityClassName}Proxy {
+    @Autowired(required = false)
+    @Qualifier(value = ${entityClassName}Endpoint.API_NAME)
+    private ${entityClassName}Endpoint userEndpoint;
+
+    @Autowired(required = false)
+    private ${entityClassName}Client userClient;
+
+    public ${entityClassName}Endpoint get${entityClassName}Endpoint(){
+        return userEndpoint!=null?userEndpoint:userClient;
+    }
+
+}

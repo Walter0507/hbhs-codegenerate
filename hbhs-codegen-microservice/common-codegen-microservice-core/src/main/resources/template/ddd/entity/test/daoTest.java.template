@@ -1,0 +1,53 @@
+package ${packageName}.repository.dao.impl;
+
+import ${packageName}.repository.BaseDaoTest;
+import ${packageName}.repository.dao.I${entityClassName}Dao;
+import ${packageName}.domain.entity.${entityClassName}Entity;
+import org.junit.Assert;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ${entityClassName}DaoImplTest extends BaseDaoTest {
+
+    @Autowired
+    private I${entityClassName}Dao ${entityName}Dao;
+
+    @Test
+    public void testBasicFlow(){
+        ${entityClassName}Entity entity = buildObject(System.currentTimeMillis());
+
+        Boolean result = ${entityName}Dao.create${entityClassName}(entity);
+        Assert.assertTrue(result);
+
+        entity = ${entityName}Dao.find${entityClassName}ById(entity.getId());
+        Assert.assertNotNull(entity);
+
+        // TODO update
+        result = ${entityName}Dao.update${entityClassName}(entity);
+        Assert.assertTrue(result);
+
+        result = ${entityName}Dao.deleted${entityClassName}(entity.getId());
+        Assert.assertTrue(result);
+
+        entity = ${entityName}Dao.find${entityClassName}ById(entity.getId());
+        Assert.assertNull(entity);
+
+        List<${entityClassName}Entity> entityList = new ArrayList<>();
+        long timestamp = System.currentTimeMillis();
+        entityList.add(buildObject(timestamp++));
+        entityList.add(buildObject(timestamp++));
+        result = ${entityName}Dao.batchCreate${entityClassName}(entityList);
+        Assert.assertTrue(result);
+    }
+
+    private ${entityClassName}Entity buildObject(long timestamp){
+        return ${entityClassName}Entity.builder()
+                .id(timestamp+"")
+                // TODO
+                .build();
+    }
+
+}

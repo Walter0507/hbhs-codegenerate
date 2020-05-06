@@ -1,0 +1,38 @@
+package ${packageName}.repository.dao.mapper;
+
+import ${packageName}.domain.criteria.${entityClassName}Criteria;
+import ${packageName}.domain.entity.${entityClassName}Entity;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
+
+import static ${packageName}.repository.dao.mapper.provider.${entityClassName}MapperConsts.*;
+
+@Mapper
+public interface ${entityClassName}Mapper {
+
+    @Insert("INSERT INTO " + TABLE_NAME + "(" + BASIC_FIELD + ") VALUES(" + BASIC_FIELD_OF_ENTITY + ")")
+    Boolean insert${entityClassName}(@Param("entity") ${entityClassName}Entity entity);
+
+    @Insert("<script>" +
+            "INSERT INTO " + TABLE_NAME + "(" + BASIC_FIELD + ")" +
+            " VALUES " +
+            "<foreach collection='entityList' item='entity' open='' close='' separator=',' > " +
+            "(" + BASIC_FIELD_OF_ENTITY + ")" +
+            "</foreach>" +
+            "</script>")
+    Boolean batchInsert${entityClassName}(@Param("entityList") List<${entityClassName}Entity> entityList);
+
+    @Update("<script> UPDATE " + TABLE_NAME + " SET " + UPDATE_SQL_OF_FIELD + " update_time=NOW() WHERE id = #{entity.id} </script>")
+    Boolean update${entityClassName}(@Param("entity") ${entityClassName}Entity entity);
+
+    @Update("UPDATE " + TABLE_NAME + " SET is_deleted = 1 where id = #{id}")
+    Boolean delete${entityClassName}(@Param("id") String id);
+
+    @Select("SELECT " + FULL_FIELD + " FROM " + TABLE_NAME + " WHERE id = #{id} AND is_deleted = 0")
+    ${entityClassName}Entity find${entityClassName}ById(@Param("id") String id);
+
+
+    List<${entityClassName}Entity> find${entityClassName}ByCriteria(@Param("criteria") ${entityClassName}Criteria criteria);
+
+}

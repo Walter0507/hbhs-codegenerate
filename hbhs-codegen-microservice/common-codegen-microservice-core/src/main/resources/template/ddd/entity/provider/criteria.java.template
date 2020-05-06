@@ -1,0 +1,5 @@
+package ${packageName}.domain.criteria;
+
+public class ${entityClassName}Criteria {
+    // TODO
+}

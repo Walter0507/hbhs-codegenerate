@@ -1,0 +1,50 @@
+package ${packageName}.api.client;
+
+import ${packageName}.api.BaseClientTest;
+import ${packageName}.domain.request.param.${entityClassName}CreateParam;
+import ${packageName}.domain.request.param.${entityClassName}UpdateParam;
+import ${packageName}.domain.response.info.${entityClassName}Info;
+import com.hbhs.common.domain.model.request.GenericRequest;
+import com.hbhs.common.domain.model.request.IdRequest;
+import org.junit.Assert;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class ${entityClassName}ClientTest extends BaseClientTest {
+
+    @Autowired
+    private ${entityClassName}Client ${entityName}Client;
+
+    @Test
+    public void testBasicFlow() {
+        ${entityClassName}CreateParam param = ${entityClassName}CreateParam.builder()
+                // TODO
+                .build();
+        GenericRequest<${entityClassName}CreateParam> createRequest = new GenericRequest<>();
+        createRequest.setParam(param);
+        ${entityClassName}Info info = ${entityName}Client.create(createRequest).getData();
+        Assert.assertNotNull(info);
+
+        ${entityClassName}UpdateParam updateParam = ${entityClassName}UpdateParam.builder()
+                .id(info.getId())
+                // TODO
+                .build();
+        GenericRequest<${entityClassName}UpdateParam> updateRequest = new GenericRequest<>();
+        updateRequest.setParam(updateParam);
+        Boolean result = ${entityName}Client.udpate(updateRequest).getData();
+        Assert.assertTrue(result);
+
+        info = ${entityName}Client.findById(IdRequest.builder().id(info.getId()).build())
+                .getData();
+        Assert.assertNotNull(info);
+
+        IdRequest deleteRequest = new IdRequest();
+        deleteRequest.setId(info.getId());
+        result = ${entityName}Client.deleteById(deleteRequest).getData();
+        Assert.assertTrue(result);
+
+        info = ${entityName}Client.findById(IdRequest.builder().id(info.getId()).build())
+                .getData();
+        Assert.assertNull(info);
+    }
+}

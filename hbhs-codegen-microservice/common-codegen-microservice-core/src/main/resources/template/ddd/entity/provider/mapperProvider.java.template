@@ -1,0 +1,4 @@
+package ${packageName}.repository.dao.mapper.provider;
+
+public class ${entityClassName}MapperProvider {
+}

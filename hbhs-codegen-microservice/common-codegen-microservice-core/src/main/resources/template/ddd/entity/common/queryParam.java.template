@@ -1,0 +1,11 @@
+package ${packageName}.domain.request.param;
+
+import com.hbhs.common.domain.model.request.param.BaseParam;
+
+public class ${entityClassName}QueryParam extends BaseParam {
+
+    @Override
+    public void checkParam() {
+
+    }
+}

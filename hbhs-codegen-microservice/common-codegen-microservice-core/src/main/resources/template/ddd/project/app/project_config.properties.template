@@ -1,0 +1,24 @@
+# database config
+db.master.url=jdbc:mysql://localhost:3306/hbhs_house
+db.master.username=root
+db.master.password=123456
+
+db.slaves[0].url=jdbc:mysql://localhost:3306/hbhs_house
+db.slaves[0].username=root
+db.slaves[0].password=123456
+
+db.slaves[1].url=jdbc:mysql://localhost:3306/hbhs_house
+db.slaves[1].username=root
+db.slaves[1].password=123456
+
+# eureka 
+eureka.instance.lease-expiration-duration-in-seconds=30
+eureka.instance.lease-renewal-interval-in-seconds=10
+eureka.instance.preferIpAddress=true
+eureka.client.registryFetchIntervalSeconds=30
+eureka.client.serviceUrl.defaultZone=http://127.0.0.1:8400/eureka/
+
+ribbon.ServerListRefreshInterval=1000
+ribbon.ReadTimeout=60000
+ribbon.ConnectTimeout=60000
+
